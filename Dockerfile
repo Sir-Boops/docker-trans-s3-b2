@@ -1,6 +1,6 @@
 FROM golang:1.11.4-alpine3.8 as build
 
-ENV TRANS_HASH=0f6cc19a387d484a1860df6856376c2a7a8228d6
+ENV TRANS_HASH=658b86d025f2f8cbfe80bc22f06098a3bb9e8c0d
 
 RUN	cd ~ && \
 	apk add git && \
