@@ -1,16 +1,14 @@
-FROM golang:1.11.4-alpine3.8 as build
+FROM sirboops/nodejs:8.15.0-alpine
 
-ENV TRANS_HASH=90374f9efb7afe199a38d58f59afe1bfcf44cc0c
+ENV TRANS_HASH=adf5dcc857dbe4dbf9a4ea208e4d2141c8404242
+ENV PATH=${PATH}:/opt/node/bin
 
-RUN	cd ~ && \
-	apk add git && \
-	git clone https://git.sergal.org/Sir-Boops/trans-s3-b2.git && \
+RUN apk add --virtual deps git && \
+	cd /opt && \
+	git clone https://git.sergal.org/Sir-Boops/trans-s3-b2 && \
 	cd trans-s3-b2 && \
 	git checkout $TRANS_HASH && \
-	go build .
+	npm install
 
-FROM alpine:3.8
-
-RUN apk add ca-certificates
-
-COPY --from=build /root/trans-s3-b2/trans-s3-b2 /trans-s3-b2
+WORKDIR /opt/trans-s3-b2
+CMD node index.js
