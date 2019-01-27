@@ -1,6 +1,6 @@
 FROM sirboops/nodejs:8.15.0-alpine
 
-ENV TRANS_HASH=ea8a9b4d3603462c81429b478758499d55906703
+ENV TRANS_HASH=8356b5c5be07fb052d284d1448136518ed0da384
 ENV PATH=${PATH}:/opt/node/bin
 
 RUN apk add --virtual deps git && \
